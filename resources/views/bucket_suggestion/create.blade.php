@@ -26,9 +26,13 @@
                     
                   @endforelse
                 </div>
+                @if (count($balls))
                 <div class="mt-3">
                   <button type="submit" class="btn btn-sm btn-primary my-2" form="bucket">Place balls in bucket</button>
                 </div>
+                @else
+                <p>Please create Bucket and Ball.</p>
+                @endif
               </form>
             </div>
           </div>
