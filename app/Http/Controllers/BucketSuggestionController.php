@@ -40,7 +40,7 @@ class BucketSuggestionController extends Controller
         if ($sizes > 0) {
             
             foreach ($balls as $ball) {
-                $buckets = Bucket::where('empty_volumn', '>', 0)->get();
+                $buckets = Bucket::where('empty_volumn', '>', 0)->orderBy('total_volumn', 'DESC')->get();
 
                 $singleBallSize = $this->getFloatVolumn($ball->volumn);
                 $remainingQty = $inputs[$ball->name];
@@ -100,7 +100,7 @@ class BucketSuggestionController extends Controller
             if ($notPlacedBall) {
                 $response['notPlacedBalls'][] = $notPlacedBall;
             }
-            // dd($results);
+            
             return back()->with('results', $response);
         } else {
             return back()->with('error', 'At least one ball field is required!');
